@@ -1,5 +1,6 @@
 package com.learn.controller;
 
+import com.learn.advisor.SampleAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -18,7 +19,7 @@ public class ChatController {
 
     public ChatController(OllamaChatModel ollamaChatModel, ChatMemory chatMemory) {
         this.ollamaChatClient = ChatClient.builder(ollamaChatModel)
-                                          .defaultAdvisors(MessageChatMemoryAdvisor
+                                          .defaultAdvisors(new SampleAdvisor(), MessageChatMemoryAdvisor
                                                                    .builder(chatMemory)
                                                                    .build())
                                           .build();
